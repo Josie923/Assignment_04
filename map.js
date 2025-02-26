@@ -15,16 +15,17 @@ map.on('load', function () {
         'data': 'data/census_states_updated.geojson'
     });
     
+   
     map.addSource('counties', {
-        'type': 'geojson',
-        'data': 'data/census_counties_updated.geojson'
-    });
+    'type': 'geojson',
+    'data': 'https://github.com/Josie923/Assignment_04/releases/download/04/census_counties_updated.json'
+});
 
     map.addSource('chinese_population', {
-        'type': 'geojson',
-        'data': 'data/census_chinese_data.geojson'
-    });
-    
+    'type': 'geojson',
+    'data': 'https://github.com/Josie923/Assignment_04/releases/download/04/census_chinese_data.json'
+});
+
     
 
     // This is the function that finds the first symbol layer
