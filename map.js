@@ -18,13 +18,14 @@ map.on('load', function () {
    
     map.addSource('counties', {
     'type': 'geojson',
-    'data': 'https://github.com/Josie923/Assignment_04/releases/download/04/census_counties_updated.json'
+    'data': 'https://drive.google.com/uc?export=download&id=1HA61877AQ4o7YBMLhL01T_0Go4Rqb1q4'
 });
 
-    map.addSource('chinese_population', {
+map.addSource('chinese_population', {
     'type': 'geojson',
-    'data': 'https://github.com/Josie923/Assignment_04/releases/download/04/census_chinese_data.json'
+    'data': 'https://drive.google.com/uc?export=download&id=1abFC46Cvc2qS40mvlBywF7CQ0D6OICGD'
 });
+
 
     
 
