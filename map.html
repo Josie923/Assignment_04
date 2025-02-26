@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Web Map</title>
+        <script src="https://api.mapbox.com/mapbox-gl-js/v2.10.0/mapbox-gl.js"></script>
+        <link href="https://api.mapbox.com/mapbox-gl-js/v2.10.0/mapbox-gl.css" rel="stylesheet">
+        
+        <style>
+            body, html { margin: 0; height: 100%; }
+            #map { width: 100vw; height: 100vh; }
+    
+            .legend, .legend2 {
+                position: absolute;
+                bottom: 30px;
+                left: 20px;
+                background: white;
+                padding: 10px;
+                font-family: Arial, sans-serif;
+                font-size: 12px;
+                border-radius: 5px;
+                box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+                pointer-events: none;
+            }
+            .legend h4, .legend2 h4 {
+                margin: 0 0 5px;
+                font-size: 14px;
+            }
+            .legend div, .legend2 div {
+                display: flex;
+                align-items: center;
+                margin-bottom: 5px;
+            }
+            .legend span, .legend2 span {
+                display: inline-block;
+                width: 20px;
+                height: 15px;
+                margin-right: 5px;
+                border: 1px solid #ccc;
+            }
+    
+            /* ✅ 这里是新增的数据描述框的 CSS */
+            #data-description {
+                position: absolute;
+                bottom: 100px;  /* 让它显示在图例的上方 */
+                left: 20px;
+                width: 320px;
+                background: rgba(255, 255, 255, 0.9);
+                padding: 12px;
+                font-family: Arial, sans-serif;
+                font-size: 12px;
+                border-radius: 5px;
+                box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+                line-height: 1.5;
+            }
+            #data-description h4 {
+                margin: 0 0 8px;
+                font-size: 14px;
+            }
+        </style>
+    </head>
+    
+
+<body>
+    <nav id="menu"></nav>
+    <div id='map'></div>    
+
+    <div id="legend" class="legend">
+        <h4 id="legend-title">Chinese Population by State</h4>
+        <div id="legend-content">
+            <!-- 图例内容将在 JavaScript 中动态填充 -->
+        </div>
+    </div>
+
+    <!-- ✅ 新增的数据描述框 -->
+    <div id="data-description">
+        <h4>About the Data</h4>
+        <p>
+            This map visualizes the <b>Chinese population</b> distribution in the United States using 
+            the 2020 American Community Survey (ACS) dataset. The data comes from the 
+            <b>B02015</b> table, specifically the <b>B02015_002E</b> field, which represents the 
+            "Chinese Alone" population. It also uses data from the <b>B01003</b> table, which 
+            provides the total population count.
+        </p>
+        <p>
+            The analysis is performed at three geographic levels: 
+            <b>state, county, and census tract</b>. This allows us to explore the concentration 
+            of the Chinese population at different scales, from national trends to local communities.
+        </p>
+        
+    </div>
+
+    <script type='text/javascript' src="map.js"></script>
+</body>
+
+
+</html>
+

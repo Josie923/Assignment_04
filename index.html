@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Personal Website</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<script src="./map.js"></script>
+
+<script>
+    document.addEventListener("DOMContentLoaded", function() {
+        window.scrollTo(0, 0); // 确保页面加载时回到顶部
+    });
+</script>
+
+<body>
+    <header>
+        <h1>
+            <span>Y</span><span>i</span><span>l</span><span>i</span><span>n</span><span> </span><span> </span> 
+            <span>L</span><span>i</span>
+        </h1>
+        <div class="text-container">
+            <a href="#" data-hover="Gifted & Bright">才华横溢</a>
+            <a href="#" data-hover="Beautiful & Light">年轻貌美</a>
+            <a href="#" data-hover="Eminent & Right">德高望重</a>
+        </div>
+
+        <div id="works" class="image-grid">
+            <img src="img/image_01.jpg" alt="Image 1">
+            <img src="img/image_02.jpg" id="image_02" alt="Clickable Image" onclick="openMap()">    
+            <img src="img/image_03.jpg" alt="Image 3">
+            <img src="img/image_04.jpg" alt="Image 4">
+            <img src="img/image_05.jpg" alt="Image 5">
+            <img src="img/image_06.jpg" alt="Image 6">
+            <img src="img/image_07.jpg" alt="Image 7">
+            <img src="img/image_08.jpg" alt="Image 8">
+            <img src="img/image_09.jpg" alt="Image 9">
+            <img src="img/image_10.jpg" alt="Image 10">
+            <img src="img/image_11.jpg" alt="Image 11">
+            <img src="img/image_12.jpg" alt="Image 12">
+
+        </div>
+
+        <script>
+            function openMap() {
+                window.location.href = 'map.html'; // 在新标签页打开 map.html
+            }
+            </script>
+            
+           
+
+
+        <div id="about" class="about-container">
+            <div class="image-about">
+                <img src="img/about.png" alt="about">
+            </div>
+        
+            <div class="text-about">
+                <a href="#" data-hover="have a great one">hi</a>
+            </div>
+        </div>
+
+        
+        <nav>
+            <a href="#about">About</a>
+            <a href="#works">Works</a>
+            <a href="mailto:yl3874@cornell.edu">Contact</a>
+        </nav>
+    </header>
+
+
+        
+</body>
+</html>

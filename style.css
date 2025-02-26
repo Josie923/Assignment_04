@@ -1,0 +1,236 @@
+@import url('https://fonts.googleapis.com/css2?family=Rozha+One&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@900&display=swap'); /* 中文字体 */
+body {
+    font-family: "Rozha One", sans-serif;
+    background-color: #aec9e3;
+    color: #003366;
+    margin: 0;
+    padding: 0;
+}
+header {
+    text-align: center;
+    padding: 100px;
+    color: white;
+    margin: 80px;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+h1 {
+    font-size: 190px;
+    margin: 10px;
+    margin-bottom: 90px;
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+}
+
+h1 span {
+    transition: color 0.05s;
+    cursor: pointer; /* 让鼠标悬停时显示小手 */
+}
+
+h1 span:hover {
+    color: #aec9e3; /* 鼠标悬停时变色 */
+}
+
+p {
+    font-size: 40px;
+    margin-top: 80px;
+    margin: 200px;
+    margin-bottom: 300px;
+}
+
+/* 11111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111 */
+.text-container {
+    display: flex;
+    justify-content: center;
+    gap: 215px; /* 调整字间距 */
+    align-items: center;
+}
+
+.text-container a {
+    text-decoration: none;
+    color: white;
+    font-size: 40px;
+    position: relative;
+    font-family: "Noto Serif SC", serif; /* 仅修改中文字体 */
+}
+
+.text-container a:hover {
+    color: transparent; /* 鼠标悬停时隐藏原文字 */
+}
+
+.text-container a::after {
+    content: attr(data-hover); /* 读取 data-hover 的内容 */
+    position: absolute;
+    left: 50%;
+    top: 7%;
+    transform: translateX(-50%);
+    width: 300%;
+    opacity: 0;
+    transition: opacity 0.3s;
+    color: white; /* 变换后文字颜色 */
+    font-family: "Rozha One", sans-serif; /* 保持鼠标悬停后的字体不变 */
+}
+
+.text-container a:hover::after {
+    opacity: 1;
+}
+
+
+/*22222222222222222222222222222222222222222222222222222222222222222222222222222222222222222222222222222222222222*/
+
+.image-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr); /* 4 列 */
+    grid-template-rows: repeat(3, auto);  /* 4 行 */
+    gap: 50px; /* 图片间距 */
+    justify-content: center;
+    margin-top: 300px; 
+    padding: 0px; /* 向下滑动后有间距 */
+}
+
+.image-grid img {
+    width: 100%;
+    height: auto;
+    object-fit: cover;
+    transition: transform 0.1s;
+}
+
+.image-grid img:hover {
+    transform: scale(1.1); /* 鼠标悬停时放大 */
+}
+
+
+/* 333333333333333333333333333333333333333333333333333333333333333333333333333333333333333333333333333333333333 */
+
+.about-container {
+    display: flex; /* 让图片和文字水平排列 */
+    justify-content: center; /* 居中对齐 */
+    align-items: center; /* 让图片和文字垂直居中 */
+    gap: 5px; /* 调整图片和文字的间距 */
+    transform: translateX(-80px); /* 整体左移 50px，可调整 */
+    margin-top: 400px;
+    margin-bottom: 150px;
+}
+
+.image-about {
+    justify-content: center;
+    padding: 0px; /* 向下滑动后有间距 */
+    gap: 50px; /* 调整字间距 */
+}
+.image-about img {
+    width: 100px;
+    height: 100px;
+
+}
+
+.text-about {
+    justify-content: center;
+    align-items: center; /* 确保垂直居中 */
+    gap: 50px; /* 调整字间距 */
+    transform: translateY(10px); /* 整体左移 50px，可调整 */
+    align-items: center;
+}
+
+.text-about a {
+    text-decoration: none;
+    color: rgb(0, 0, 0);
+    font-size: 25px;
+    position: relative;
+}
+
+.text-about a:hover {
+    color: transparent; /* 鼠标悬停时隐藏原文字 */
+}
+
+.text-about a::after {
+    content: attr(data-hover); /* 读取 data-hover 的内容 */
+    position: absolute;
+    left: 0%;
+    top: 0;
+    transform: translateX(0%);
+    width: 790%;
+    opacity: 0;
+    transition: opacity 0.1s;
+    color: rgb(0, 0, 0); /* 变换后文字颜色 */
+    font-family: "Rozha One", sans-serif; /* 保持鼠标悬停后的字体不变 */
+}
+
+.text-about a:hover::after {
+    opacity: 1;
+}
+
+
+
+
+/*zzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzz*/
+nav {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    background-color: #aec9e3;
+    padding: 4px 0;
+    text-align: center;
+}
+nav a {
+    margin: 30px;
+    text-decoration: none;
+    color: white;
+    font-size: 18px; /* 你可以调整导航栏字体大小 */
+    position: relative;
+}
+nav a::after {
+    content: attr(data-hover);
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    color: #0084ff;
+    opacity: 0;
+    transition: opacity 0.1s;
+}
+nav a:hover::after {
+    opacity: 1;
+}
+.about-section, .contact-section {
+    padding: 200px;
+    text-align: center;
+    font-size: 16px; /* 你可以调整这些部分的字体大小 */
+}
+.work-grid {
+    display: flex;
+    justify-content: center;
+    gap: 90px;
+}
+.work-item {
+    background: white;
+    padding: 15px;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    font-size: 16px; /* 你可以调整作品部分的字体大小 */
+    position: relative;
+}
+.work-item h3::after {
+    content: "New Text";
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    opacity: 0;
+    transition: opacity 0.3s;
+}
+.work-item h3:hover::after {
+    opacity: 1;
+}
+.work-item img {
+    width: 100%;
+    max-width: 300px;
+    border-radius: 8px;
+}
