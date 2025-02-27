@@ -15,18 +15,16 @@ map.on('load', function () {
         'data': 'data/census_states_updated.geojson'
     });
     
-   
     map.addSource('counties', {
-    'type': 'geojson',
-    'data': 'https://drive.google.com/uc?export=download&id=1HA61877AQ4o7YBMLhL01T_0Go4Rqb1q4'
-});
+        'type': 'geojson',
+        'data': 'data/census_counties_updated.geojson'
+    });
 
-map.addSource('chinese_population', {
-    'type': 'geojson',
-    'data': 'https://drive.google.com/uc?export=download&id=1abFC46Cvc2qS40mvlBywF7CQ0D6OICGD'
-});
-
-
+    map.addSource('chinese_population', {
+        'type': 'geojson',
+        'data': 'data/census_chinese_data.geojson'
+    });
+    
     
 
     // This is the function that finds the first symbol layer
