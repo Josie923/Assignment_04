@@ -15,16 +15,39 @@ map.on('load', function () {
         'data': 'data/census_states_updated.geojson'
     });
     
-    map.addSource('counties', {
-        'type': 'geojson',
-        'data': 'data/census_counties_updated.geojson'
-    });
+    fetch('data/census_counties_updated.geojson.gz')  // 读取 .gz 文件
+    .then(response => response.arrayBuffer())      // 获取二进制数据
+    .then(buffer => {
+        let decompressed = pako.inflate(buffer, { to: 'string' });  // 解压 gzip
+        let geojson = JSON.parse(decompressed);  // 解析 JSON
+        map.addSource('counties', {
+            'type': 'geojson',
+            'data': geojson  // 直接传递 JSON 数据
+        });
 
-    map.addSource('chinese_population', {
-        'type': 'geojson',
-        'data': 'data/census_chinese_data.geojson'
-    });
-    
+        // ✅ 重新添加县级图层（确保解压后再添加）
+        map.addLayer({
+            'id': 'county_layer',
+            'type': 'fill',
+            'source': 'counties',
+            'paint': {
+                'fill-color': [
+                    'interpolate', ['linear'], ['get', 'B02015_002E'],
+                    0, 'rgb(201, 219, 236)',      // 0 - 1K
+                    1000, 'rgba(158, 202, 225, 1)',   // 1K - 3K
+                    3000, 'rgba(107, 174, 214, 1)',  // 3K - 10K
+                    10000, 'rgba(49, 130, 189, 1)',   // 10K - 30K
+                    30000, 'rgba(8, 81, 156, 1)'     // 30K+
+                ],
+                'fill-outline-color': 'rgba(0, 65, 131, 0.4)'
+            },
+            'minzoom': 5
+        }, 'water');
+    })
+    .catch(error => console.error('Error loading GZipped GeoJSON:', error));
+
+
+
     
 
     // This is the function that finds the first symbol layer
@@ -62,47 +85,7 @@ let firstSymbolId;
         'maxzoom': 5   // 放大到 5 级时隐藏
     }, 'water');
     
-    map.addLayer({
-        'id': 'county_layer',
-        'type': 'fill',
-        'source': 'counties',
-        'paint': {
-            'fill-color': [
-                'interpolate', ['linear'], ['get', 'B02015_002E'],
-                0, 'rgb(201, 219, 236)',      // 0 - 1K
-                1000, 'rgba(158, 202, 225, 1)',   // 1K - 3K
-                3000, 'rgba(107, 174, 214, 1)',  // 3K - 10K
-                10000, 'rgba(49, 130, 189, 1)',   // 10K - 30K
-                30000, 'rgba(8, 81, 156, 1)'     // 30K+
-            ],
-            'fill-outline-color': 'rgba(0, 65, 131, 0.4)'  // 给州添加黑色边界
-
-        },
-        'minzoom': 5,  // 5 级以上显示
-        'maxzoom': 9   // 9 级以下显示
-    }, 'water');
-    
-    // 现在才加载普查区级数据
-    map.addLayer({
-        'id': 'chinese_population',
-        'type': 'fill',
-        'source': 'chinese_population',
-        'paint': {
-            
-            'fill-color': [
-                'interpolate', ['linear'], ['get', 'B02015_002E'],
-                0, 'rgb(201, 219, 236)',     // 0 - 200
-                200, 'rgba(158, 202, 225, 1)',   // 200 - 500
-                500, 'rgba(107, 174, 214, 1)',  // 500 - 1K
-                1000, 'rgba(49, 130, 189, 1)',   // 1K - 3K
-                3000, 'rgba(8, 81, 156, 1)'     // 3K+
-            ],
-            'fill-outline-color': 'rgba(0, 65, 131, 0.4)'  // 给州添加黑色边界
-
-        },
-        'minzoom': 9  // 9 级以上才显示
-    }, 'water');
-    
+        
  
     
 
@@ -136,10 +119,7 @@ map.on('click', 'county_layer', function (e) {
     createPopup('county_layer', 'County', e.features[0].properties, e);
 });
 
-// Apply to census tract layer
-map.on('click', 'chinese_population', function (e) {
-    createPopup('chinese_population', 'Census Tract', e.features[0].properties, e);
-});
+
 
 
 // 地图加载完成后执行
@@ -178,16 +158,7 @@ map.on('zoom', function () {
             <div><span style="background-color: rgba(8, 81, 156, 1)"></span>30K+</div>
         `;
         
-    } else {
-        // 显示普查区级图例
-        legendTitle.innerHTML = "Chinese Population by Census Tract";
-        legendContent.innerHTML = `
-            <div><span style="background-color: rgb(224, 234, 243)"></span>0 - 200</div>
-            <div><span style="background-color: rgb(185, 219, 236)"></span>200 - 500</div>
-            <div><span style="background-color: rgba(107, 174, 214, 1)"></span>500 - 1K</div>
-            <div><span style="background-color: rgba(49, 130, 189, 1)"></span>1K - 3K</div>
-            <div><span style="background-color: rgba(8, 81, 156, 1)"></span>3K+</div>
-        `;
+    
     }
 });
 
